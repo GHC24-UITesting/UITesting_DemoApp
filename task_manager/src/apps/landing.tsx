@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Body1, Button, Caption1, Card, CardFooter, CardHeader, CardPreview, Checkbox, Divider, makeStyles, SelectionItemId, Text, Title1, tokens } from '@fluentui/react-components';
-import { List, ListItem } from '@fluentui/react-list-preview';
+import React, { useEffect, useState } from 'react';
+import { Button, Caption1, Card, CardHeader, CardPreview, Checkbox, makeStyles, Text, Title1, tokens } from '@fluentui/react-components';
 import image from '../assets/image.png';
 
 interface LandingProps {
