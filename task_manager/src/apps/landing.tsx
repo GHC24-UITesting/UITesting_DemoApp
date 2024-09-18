@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import { Body1, Button, Caption1, Card, CardFooter, CardHeader, CardPreview, Checkbox, Divider, makeStyles, SelectionItemId, Text, tokens } from '@fluentui/react-components';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Body1, Button, Caption1, Card, CardFooter, CardHeader, CardPreview, Checkbox, Divider, makeStyles, SelectionItemId, Text, Title1, tokens } from '@fluentui/react-components';
 import { List, ListItem } from '@fluentui/react-list-preview';
 import image from '../assets/image.png';
 
@@ -47,6 +47,13 @@ const useStyles = makeStyles({
 
   grayBackground: {
     backgroundColor: tokens.colorNeutralBackground3,
+  },
+  onboardButton: {
+    position: 'fixed',
+    top: '10px',
+    right: '10px',
+    zIndex: 1000,
+    paddingTop: "10px"
   }
 });
 
@@ -54,10 +61,22 @@ const Landing = ({tasks}: LandingProps) => {
   const styles = useStyles();
   const items = tasks.map((task) => { return { name: task, description: "test_description", selected: false } });
   const [selectedTasks, setSelectedTasks] = useState(items);
+  const [numSelected, setNumSelected] = useState(0);
+
+  useEffect(() => {
+    const numSelectedTasks = selectedTasks.filter((task) => task.selected);
+    setNumSelected(numSelectedTasks.length);
+  }, [selectedTasks])
 
   return (
       <div className={styles.main}>
-        <Divider>Please select the task you would like to onboard to</Divider>
+        <Title1 as="h1">Task Manager</Title1>
+        <Text>Please select the tags you would like to onboard to</Text>
+        <div className={styles.onboardButton}>
+          <Button disabled={numSelected === 0}>
+            Onboard {numSelected > 0 ? `${numSelected} task${numSelected === 1 ? "" : "s"}` : ""}
+          </Button>
+        </div>
         <div className={styles.row}>
         {
           tasks.map((task, idx) => {
