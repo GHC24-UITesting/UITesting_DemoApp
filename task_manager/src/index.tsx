@@ -2,13 +2,16 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import AppRoutes from './routes'; // Ensure correct import
 import reportWebVitals from './reportWebVitals';
+import { FluentProvider, teamsLightTheme } from '@fluentui/react-components';
 
 const container = document.getElementById('root');
 const root = createRoot(container!); // Create a root.
 
 root.render(
   <React.StrictMode>
-    <AppRoutes />
+    <FluentProvider theme={teamsLightTheme}>
+      <AppRoutes />
+    </FluentProvider>
   </React.StrictMode>
 );
 
