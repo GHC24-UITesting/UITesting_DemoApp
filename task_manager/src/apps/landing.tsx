@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Caption1, Card, CardHeader, CardPreview, Checkbox, makeStyles, Text, Title1, tokens } from '@fluentui/react-components';
 import image from '../assets/image.png';
+import { Navigate, useNavigate } from 'react-router';
 
 interface LandingProps {
   tasks: string[];
@@ -61,6 +62,7 @@ const Landing = ({tasks}: LandingProps) => {
   const items = tasks.map((task) => { return { name: task, description: "test_description", selected: false } });
   const [selectedTasks, setSelectedTasks] = useState(items);
   const [numSelected, setNumSelected] = useState(0);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const numSelectedTasks = selectedTasks.filter((task) => task.selected);
@@ -72,7 +74,10 @@ const Landing = ({tasks}: LandingProps) => {
         <Title1 as="h1">Task Manager</Title1>
         <Text>Please select the tags you would like to onboard to</Text>
         <div className={styles.onboardButton}>
-          <Button disabled={numSelected === 0}>
+          <Button 
+            disabled={numSelected === 0}
+            onClick={() => navigate('/taskpage')}
+          >
             Onboard {numSelected > 0 ? `${numSelected} task${numSelected === 1 ? "" : "s"}` : ""}
           </Button>
         </div>
