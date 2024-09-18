@@ -54,7 +54,7 @@ const NewsApp: React.FC = () => {
         onChange={(e, option) => setCategory(option?.key as string)}
         options={categoryOptions}
       />
-      <PrimaryButton text="Search" onClick={handleSearch} />
+      <PrimaryButton text="Search" onClick={handleSearch} styles={{ root: { width: '100px', height: '40px' } }} />
       <Stack tokens={{ childrenGap: 10 }}>
         <h2>Top Headlines</h2>
         {articles.length > 0 ? (
