@@ -1,47 +1,54 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
-import { DetailsList, IColumn, MarqueeSelection, Selection, Separator } from '@fluentui/react';
-import { FluentProvider, MessageBar, MessageBarBody } from '@fluentui/react-components';
+import { Button, Divider, makeStyles, SelectionItemId, Text } from '@fluentui/react-components';
+import { List, ListItem } from '@fluentui/react-list-preview';
 
 interface LandingProps {
   tasks: string[];
 }
+
+const useStyles = makeStyles({
+  buttonControls: {
+    display: "flex",
+    columnGap: "8px",
+    marginBottom: "16px",
+  },
+});
+
 const Landing = ({tasks}: LandingProps) => {
-  const [numSelectedItems, setNumSelectedItems] = useState<number>(0);
-  const selection = new Selection({
-    onSelectionChanged: (): void => setNumSelectedItems(selection.getSelectedCount())
-  });
-  const items = tasks.map((task, idx) => { return { key: idx, name: task, value: idx } });
-  console.log(items)
-  const columns: IColumn[] = [
-    {
-      key: 'column1',
-      name: 'Task',
-      fieldName: 'name',
-      minWidth: 100,
-      maxWidth: 200,
-      isResizable: false
-    }
-  ]
+  const classes = useStyles();
+  const [selectedItems, setSelectedItems] = useState<SelectionItemId[]>([]);
+  const [allSelected, setAllSelected] = useState<boolean>(false);
+  const items = tasks.map((task, idx) => { return { id: task, name: task } });
+
+  
+
   return (
     <div>
-      <div className="Landing">
-        <Separator>Task Manager</Separator>
-        <div className='LandingTasks'>
-          <div>
-            <MarqueeSelection selection={selection}>
-              <DetailsList
-                items={items}
-                columns={columns}
-                selection={selection}
-                setKey='set'
-                selectionPreservedOnEmptyClick={true}
-              />
-            </MarqueeSelection>
-          </div>
-        </div>
-        Onboard to {numSelectedItems} tasks
+      <Divider>Task Manager</Divider>
+      <div className={classes.buttonControls}>
+        <Button onClick={(e) => {
+            if (allSelected) {
+              setSelectedItems([])
+            } else {
+              setSelectedItems(items.map(({ id }) => id))
+            }
+            setAllSelected((allSelected) => !allSelected)
+          }
+        }>
+          {allSelected ? "Deselect All" : "Select All"}
+        </Button>
       </div>
+      <List
+        selectionMode="multiselect"
+        selectedItems={selectedItems}
+        onSelectionChange={(_, data) => setSelectedItems(data.selectedItems)}
+      >
+        {items.map(({ name }) => (
+          <ListItem key={name} value={name} aria-label={name}>
+            <Text>{name}</Text>
+          </ListItem>
+        ))}
+      </List>
     </div>
   );
 }
