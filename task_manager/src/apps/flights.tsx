@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
-import { Stack, TextField, Dropdown, PrimaryButton, DetailsList, IColumn, MessageBar, MessageBarType, DetailsListLayoutMode, ShimmeredDetailsList } from '@fluentui/react';
+import { Stack, IColumn, DetailsListLayoutMode, ShimmeredDetailsList } from '@fluentui/react';
+import { Button, Dropdown, Input, Label, MessageBar, Option } from '@fluentui/react-components';
 
 interface Flight {
   departure: {
@@ -48,22 +49,17 @@ const FlightsApp = () => {
 
   return (
     <Stack tokens={{ childrenGap: 20, padding: 20 }}>
-      <TextField
-        label="Airport IATA Code"
-        value={iataCode}
-        onChange={(e, newValue) => setIataCode(newValue || '')}
-        placeholder="Enter IATA code (e.g., JFK)"
-      />
+      <Label>Airport IATA Code</Label>
+      <Input appearance="outline" onChange={(e, { value }) => setIataCode(value || '')} />
+      <label>Type</label>
       <Dropdown
-        label="Type"
-        selectedKey={type}
-        options={[
-          { key: 'departure', text: 'Departure' },
-          { key: 'arrival', text: 'Arrival' },
-        ]}
-        onChange={(e, option) => setType(option?.key as string)}
-      />
-      <PrimaryButton text="Search" onClick={handleSearch} styles={{ root: { width: '100px', height: '40px' } }} />
+        selectedOptions={[type]}
+        onOptionSelect={(e, data) => setType(data.optionText as string)}
+      >
+        <Option key="departure">Departure</Option>
+        <Option key="arrival">Arrival</Option>
+      </Dropdown>
+      <Button appearance="primary" onClick={handleSearch} >Search</Button>
       {flights.length > 0 ? (
         <ShimmeredDetailsList
           items={mappedFlights}
@@ -77,7 +73,7 @@ const FlightsApp = () => {
 
         />
       ) : (
-        <MessageBar messageBarType={MessageBarType.info}>No flights found</MessageBar>
+        <MessageBar intent="info">No flights found</MessageBar>
       )}
     </Stack>
   );
