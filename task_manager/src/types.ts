@@ -4,4 +4,5 @@ export interface Task {
     image: string;
     type: "live-event" | "misc";
     selected: boolean;
+    page: string;
 }

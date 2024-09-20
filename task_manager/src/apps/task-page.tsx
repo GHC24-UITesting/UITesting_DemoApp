@@ -1,10 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Task } from "../types";
 import { taskPageStyles } from "../styles";
 import { Card, Title1 } from "@fluentui/react-components";
 
 const TaskPage = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const styles = taskPageStyles();
     const { selectedTasks } = location.state;
     const onboardedTasks = (selectedTasks as Task[]).filter((task) => task.selected);
@@ -18,7 +19,9 @@ const TaskPage = () => {
                         {
                             onboardedTasks.filter((task) => task.type === "live-event")?.map((task) => {
                                 return (
-                                    <Card>
+                                    <Card
+                                        onClick={() => navigate(task.page)}
+                                    >
                                         {task.name}
                                     </Card>
                                 )
@@ -32,7 +35,9 @@ const TaskPage = () => {
                             {
                                 onboardedTasks.filter((task) => task.type === "misc")?.map((task) => {
                                     return (
-                                        <Card>
+                                        <Card
+                                            onClick={() => navigate(task.page)}
+                                        >
                                             {task.name}
                                         </Card>
                                     )

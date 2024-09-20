@@ -11,28 +11,32 @@ export function getServices(): Task[] {
             description: "Check the weather in your area",
             selected: false,
             image: weather,
-            type: "live-event"
+            type: "live-event",
+            page: "/weather"
         },
         {
             name: "Flights",
             description: "Track flghts of your interest",
             selected: false,
             image: flight,
-            type: "live-event"
+            type: "live-event",
+            page: "/flights"
         }, 
         {
             name: "News",
             description: "View current trending news",
             selected: false,
             image: news,
-            type: "live-event"
+            type: "live-event",
+            page :"news"
         },
         {
             name: "To-do list",
             description: "Manage your daily tasks",
             selected: false,
             image: todo,
-            type: "misc"
+            type: "misc",
+            page: "todo"
         }
     ];
 }
