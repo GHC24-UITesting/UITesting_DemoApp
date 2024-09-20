@@ -27,7 +27,7 @@ const Landing = ({tasks}: LandingProps) => {
         <div className={styles.onboardButton}>
           <Button 
             disabled={numSelected === 0}
-            onClick={() => navigate('/taskpage')}
+            onClick={() => navigate('/taskpage', { state: { selectedTasks } })}
           >
             Onboard {numSelected > 0 ? `${numSelected} service${numSelected === 1 ? "" : "s"}` : ""}
           </Button>
