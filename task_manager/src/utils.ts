@@ -10,25 +10,29 @@ export function getServices(): Task[] {
             name: "Weather",
             description: "Check the weather in your area",
             selected: false,
-            image: weather
+            image: weather,
+            type: "live-event"
         },
         {
             name: "Flights",
             description: "Track flghts of your interest",
             selected: false,
-            image: flight
+            image: flight,
+            type: "live-event"
         }, 
         {
             name: "News",
             description: "View current trending news",
             selected: false,
-            image: news
+            image: news,
+            type: "live-event"
         },
         {
             name: "To-do list",
             description: "Manage your daily tasks",
             selected: false,
-            image: todo
+            image: todo,
+            type: "misc"
         }
     ];
 }

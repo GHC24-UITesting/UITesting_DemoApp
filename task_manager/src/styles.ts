@@ -6,11 +6,6 @@ const flex = {
 };
 
 export const landingStyles = makeStyles({
-    parent: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
     main: {
       ...flex,
       flexDirection: "column",
@@ -47,5 +42,38 @@ export const landingStyles = makeStyles({
       right: '10px',
       zIndex: 1000,
       paddingTop: "10px"
+    }
+});
+
+export const taskPageStyles = makeStyles({
+  parent: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  }, 
+  
+  container: {
+    display: "flex",
+    gap: "250px",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  main: {
+      ...flex,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+
+    col: {
+      ...flex,
+      flexWrap: "wrap",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "60%"
     }
 });
