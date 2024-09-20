@@ -1,3 +1,34 @@
-export function getTasks(): string[] {
-    return ['Task 1', 'Task 2', 'Task 3', 'Task 4', 'Task 5', 'Task 6', 'Task 7', 'Task 8', 'Task 9', 'Task 10'];
+import { Task } from "./types";
+import weather from "./assets/weather.jpg";
+import flight from "./assets/flight.jpg";
+import news from "./assets/news.jpg";
+import todo from "./assets/todo.jpg";
+
+export function getServices(): Task[] {
+    return [
+        {
+            name: "Weather",
+            description: "Check the weather in your area",
+            selected: false,
+            image: weather
+        },
+        {
+            name: "Flights",
+            description: "Track flghts of your interest",
+            selected: false,
+            image: flight
+        }, 
+        {
+            name: "News",
+            description: "View current trending news",
+            selected: false,
+            image: news
+        },
+        {
+            name: "To-do list",
+            description: "Manage your daily tasks",
+            selected: false,
+            image: todo
+        }
+    ];
 }
