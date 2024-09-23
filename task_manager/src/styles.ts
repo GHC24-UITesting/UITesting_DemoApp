@@ -55,10 +55,9 @@ export const taskPageStyles = makeStyles({
   
   container: {
     display: "flex",
-    gap: "250px",
+    gap: "0px",
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
     width: "100%"
   },
 
@@ -66,16 +65,16 @@ export const taskPageStyles = makeStyles({
       ...flex,
       flexDirection: "row",
       justifyContent: "center",
-      alignItems: "center",
-    },
+      alignItems: "flex-start"
+  },
 
     col: {
       ...flex,
       flexWrap: "wrap",
       flexDirection: "row",
       justifyContent: "center",
-      alignItems: "center",
-      width: "60%"
+      alignItems: "flex-start",
+      width: "100%"
     },
 
     card: {

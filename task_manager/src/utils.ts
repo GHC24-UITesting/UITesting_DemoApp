@@ -1,4 +1,3 @@
-import React from "react";
 import { Task } from "./types";
 import weather from "./assets/weather.jpg";
 import flight from "./assets/flight.jpg";
@@ -7,6 +6,7 @@ import todo from "./assets/todo.jpg";
 import WeatherApp from "./apps/weather";
 import FlightsApp from "./apps/flights";
 import NewsApp from "./apps/news";
+import TodoList from "./apps/todo";
 
 export function getServices(): Task[] {
     return [
@@ -57,5 +57,7 @@ export function getComponentForId(id: string) {
             return FlightsApp();
         case "news":
             return NewsApp({ parent: "card" });
+        case "todo":
+            return TodoList({ parent: "card" });
     }
 }

@@ -1,8 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Task } from "../types";
 import { taskPageStyles } from "../styles";
-import { Card, CardHeader, CardPreview, Title1, Text, Button } from "@fluentui/react-components";
-import WeatherApp from "./weather";
+import { Card, CardHeader, CardPreview, Title1, Button } from "@fluentui/react-components";
 import { getComponentForId } from "../utils";
 
 const TaskPage = () => {
@@ -45,11 +44,17 @@ const TaskPage = () => {
                                 onboardedTasks.filter((task) => task.type === "misc")?.map((task) => {
                                     return (
                                         <Card
-                                            onClick={() => navigate(task.page)}
-                                            size="large"
-                                        >
-                                            {task.name}
-                                        </Card>
+                                    size="large"
+                                    className={styles.card}
+                                    >
+                                        <CardHeader
+                                            header={<Title1 as="strong">{task.name}</Title1>}
+                                            action={<Button onClick={() => navigate(task.page)}>View</Button>}
+                                        />
+                                        <CardPreview>
+                                            {getComponentForId(task.id)}
+                                        </CardPreview>
+                                    </Card>
                                     )
                                 })
                             }

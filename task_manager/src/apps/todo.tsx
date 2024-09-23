@@ -1,5 +1,5 @@
 import { Stack } from "@fluentui/react";
-import { Button, Card, CardFooter, CardHeader, CardPreview, Input, InputOnChangeData, Persona, SelectionItemId, Text, Title1, useId } from "@fluentui/react-components";
+import { Button, Card, CardFooter, CardHeader, CardPreview, Input, InputOnChangeData, SelectionItemId, Text, Title1, useId } from "@fluentui/react-components";
 import { AddFilled, CheckmarkUnderlineCircleFilled } from "@fluentui/react-icons";
 import { List, ListItem } from "@fluentui/react-list-preview";
 
@@ -10,12 +10,16 @@ type TaskItem = {
   id: string;
 };
 
+interface TodoListProps {
+    parent: "card" | "page";
+}
+
 const items: TaskItem[] = [].map((name) => ({
   name,
   id: name,
 }));
 
-const TodoList = () => {
+const TodoList = (props: TodoListProps) => {
     const inputId = useId("input");
   const [selectedItems, setSelectedItems] = React.useState<SelectionItemId[]>([]);
   const [newTask, setNewTask] = React.useState<string>("");
@@ -23,9 +27,9 @@ const TodoList = () => {
   return (
     <div>
         <Card>
-            <CardHeader
+            {props.parent === "page" && (<CardHeader
                 header={<Title1 as="h1">To-do List</Title1>}
-            />
+            />)}
             <CardPreview>
                 <List
                 selectionMode="multiselect"

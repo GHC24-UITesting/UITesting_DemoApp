@@ -15,7 +15,7 @@ const AppRoutes = () => (
       <Route path="/flights" element={<FlightsApp />} /> 
       <Route path="/news" element={<NewsApp parent='page'/>} /> 
       <Route path="/taskpage" element={<TaskPage/>}/>
-      <Route path="/todo" element={<TodoList/>} />
+      <Route path="/todo" element={<TodoList parent='page'/>} />
       <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
   </Router>
