@@ -16,7 +16,7 @@ export function getServices(): Task[] {
         },
         {
             name: "Flights",
-            description: "Track flghts of your interest",
+            description: "Track flights of your interest",
             selected: false,
             image: flight,
             type: "live-event",
