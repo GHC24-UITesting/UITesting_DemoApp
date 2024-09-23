@@ -5,6 +5,7 @@ import WeatherApp from './apps/weather';
 import TaskPage from './apps/task-page';
 import FlightsApp from './apps/flights';
 import NewsApp from './apps/news';
+import TodoList from './apps/todo';
 
 const AppRoutes = () => (
   <Router>
@@ -14,6 +15,7 @@ const AppRoutes = () => (
       <Route path="/flights" element={<FlightsApp />} /> 
       <Route path="/news" element={<NewsApp parent='page'/>} /> 
       <Route path="/taskpage" element={<TaskPage/>}/>
+      <Route path="/todo" element={<TodoList/>} />
       <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
   </Router>
