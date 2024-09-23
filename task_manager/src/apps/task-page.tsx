@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Task } from "../types";
 import { taskPageStyles } from "../styles";
-import { Card, CardHeader, CardPreview, Title1, Text } from "@fluentui/react-components";
+import { Card, CardHeader, CardPreview, Title1, Text, Button } from "@fluentui/react-components";
 import WeatherApp from "./weather";
 import { getComponentForId } from "../utils";
 
@@ -22,12 +22,12 @@ const TaskPage = () => {
                             onboardedTasks.filter((task) => task.type === "live-event")?.map((task) => {
                                 return (
                                     <Card
-                                        // onClick={() => navigate(task.page)}
-                                        size="large"
-                                        className={styles.card}
+                                    size="large"
+                                    className={styles.card}
                                     >
                                         <CardHeader
-                                            header={<Text weight="semibold">{task.name}</Text>}
+                                            header={<Title1 as="strong">{task.name}</Title1>}
+                                            action={<Button onClick={() => navigate(task.page)}>View</Button>}
                                         />
                                         <CardPreview>
                                             {getComponentForId(task.id)}
