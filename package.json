@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "@fluentui/react": "^8.120.9"
-  },
-  "dependencies": {
-    "axios": "^1.7.7"
-  }
-}
