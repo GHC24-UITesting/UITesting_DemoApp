@@ -49,3 +49,23 @@ export const landingStyles = makeStyles({
     paddingTop: "10px",
   },
 });
+
+export const useStylesForEvents = makeStyles({
+  container: {
+    padding: "20px",
+    maxWidth: "600px",
+    margin: "0 auto",
+  },
+  input: {
+    marginBottom: "20px",
+  },
+  dropdown: {
+    marginBottom: "20px",
+  },
+  button: {
+    marginBottom: "20px",
+  },
+  event: {
+    marginBottom: "10px",
+  },
+});

@@ -8,35 +8,16 @@ import {
   Button,
   Dropdown,
   Option,
-  makeStyles,
   Card,
   CardHeader,
   Link,
   Spinner,
 } from "@fluentui/react-components";
+import { useStylesForEvents } from "../styles";
 
-const useStyles = makeStyles({
-  container: {
-    padding: "20px",
-    maxWidth: "600px",
-    margin: "0 auto",
-  },
-  input: {
-    marginBottom: "20px",
-  },
-  dropdown: {
-    marginBottom: "20px",
-  },
-  button: {
-    marginBottom: "20px",
-  },
-  event: {
-    marginBottom: "10px",
-  },
-});
 
 const EventsApp: React.FC = () => {
-  const styles = useStyles();
+  const styles = useStylesForEvents();
   const [selectedDate, setSelectedDate] = useState<string>("any");
   const [city, setCity] = useState<string>("");
   const [events, setEvents] = useState<any[]>([]);
