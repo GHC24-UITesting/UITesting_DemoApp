@@ -1,6 +1,6 @@
 import { Stack } from "@fluentui/react";
-import { Button, Input, InputOnChangeData, Persona, SelectionItemId, Text, useId } from "@fluentui/react-components";
-import { AddFilled } from "@fluentui/react-icons";
+import { Button, Card, CardFooter, CardHeader, CardPreview, Input, InputOnChangeData, Persona, SelectionItemId, Text, Title1, useId } from "@fluentui/react-components";
+import { AddFilled, CheckmarkUnderlineCircleFilled } from "@fluentui/react-icons";
 import { List, ListItem } from "@fluentui/react-list-preview";
 
 import * as React from "react";
@@ -22,27 +22,41 @@ const TodoList = () => {
 
   return (
     <div>
-        <List
-        selectionMode="multiselect"
-        selectedItems={selectedItems}
-        onSelectionChange={(_, data) => setSelectedItems(data.selectedItems)}
-        >
-        {items.map(({ name }) => (
-            <ListItem key={name} value={name} aria-label={name}>
-                <Text>{name}</Text>
-            </ListItem>
-        ))}
-        </List>
-        <Stack horizontal>
-            <Input value={newTask} id={inputId} onChange={(_, data: InputOnChangeData) => { setNewTask(data.value)}}/>
-            <Button 
-                icon={<AddFilled/>} 
-                onClick={() => { 
-                    items.push({name: newTask, id: newTask});
-                    setNewTask("");
-                }}
-            >Add</Button>
-        </Stack>
+        <Card>
+            <CardHeader
+                header={<Title1 as="h1">To-do List</Title1>}
+            />
+            <CardPreview>
+                <List
+                selectionMode="multiselect"
+                selectedItems={selectedItems}
+                onSelectionChange={(_, data) => setSelectedItems(data.selectedItems)}
+                >
+                {items.map(({ name }) => (
+                    <ListItem key={name} value={name} aria-label={name}>
+                        <Text>{name}</Text>
+                    </ListItem>
+                ))}
+                </List>
+                <Stack horizontal>
+                    <Input value={newTask} id={inputId} onChange={(_, data: InputOnChangeData) => { setNewTask(data.value)}}/>
+                    <Button 
+                        icon={<AddFilled/>} 
+                        onClick={() => { 
+                            items.push({name: newTask, id: newTask});
+                            setNewTask("");
+                        }}
+                        disabled={newTask.trim() === ""}
+                    >Add</Button>
+                </Stack>
+            </CardPreview>
+            <CardFooter>
+                <Stack horizontal>
+                    <CheckmarkUnderlineCircleFilled style={{ paddingTop: "5px"}}/>
+                    <Text>{selectedItems.length}{" / "}{items.length}{" "} completed tasks</Text>
+                </Stack>
+            </CardFooter>
+        </Card>
     </div>
   );
 };
