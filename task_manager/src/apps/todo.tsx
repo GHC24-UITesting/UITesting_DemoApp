@@ -25,7 +25,6 @@ const TodoList = (props: TodoListProps) => {
   const [newTask, setNewTask] = React.useState<string>("");
 
   return (
-    <div>
         <Card>
             {props.parent === "page" && (<CardHeader
                 header={<Title1 as="h1">To-do List</Title1>}
@@ -61,7 +60,6 @@ const TodoList = (props: TodoListProps) => {
                 </Stack>
             </CardFooter>
         </Card>
-    </div>
   );
 };
 
