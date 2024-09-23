@@ -55,7 +55,7 @@ const NewsApp: React.FC<NewsAppProps> = (props) => {
 
   return (
     <div>
-      <Stack tokens={{ childrenGap: 5, padding: 20 }}>
+      <Stack tokens={{ childrenGap: 20, padding: 20 }}>
         <Label>Country Code{" "}</Label>
         <Input
           placeholder="Enter country code (e.g., us)"
