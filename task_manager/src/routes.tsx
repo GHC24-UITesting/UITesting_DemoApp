@@ -10,7 +10,7 @@ const AppRoutes = () => (
   <Router>
     <Routes>
       <Route path="/home" element={<Landing tasks={getServices()}/>} /> 
-      <Route path="/weather" element={<WeatherApp />} /> 
+      <Route path="/weather" element={<WeatherApp parent='page'/>} /> 
       <Route path="/flights" element={<FlightsApp />} /> 
       <Route path="/news" element={<NewsApp />} /> 
       <Route path="/taskpage" element={<TaskPage/>}/>

@@ -3,7 +3,10 @@ import {  Button, Input, Spinner, Card, CardHeader, Image, LargeTitle, Title3, T
 import { WeatherSunny24Regular, WeatherRain24Regular, WeatherSnow24Regular, WeatherCloudy24Regular, WeatherFog24Regular, WeatherPartlyCloudyDay24Regular, ArrowUp24Regular, ArrowDown24Regular, ArrowLeft24Regular, ArrowRight24Regular } from '@fluentui/react-icons';
 import axios from 'axios';
 
-const WeatherApp: React.FC = () => {
+interface WeatherCardProps {
+    parent: "card" | "page";
+}
+const WeatherApp: React.FC<WeatherCardProps> = (props: WeatherCardProps) => {
     const [city, setCity] = useState('');
     const [weatherData, setWeatherData] = useState<any>(null);
     const [loading, setLoading] = useState(false);
@@ -63,9 +66,11 @@ const WeatherApp: React.FC = () => {
         }
     };
 
+    const isCard = props.parent === "card";
+    const parentWidth = isCard ? '200px' : '300px';
     return (
-        <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-            <LargeTitle>Weather App</LargeTitle>
+        <div style={{ padding: '20px', maxWidth: parentWidth, margin: '0 auto' }}>
+            {!isCard && (<LargeTitle>Weather</LargeTitle>)}
 
             <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
                 <Input
@@ -84,7 +89,7 @@ const WeatherApp: React.FC = () => {
                         header={<Text>{weatherData.location.name}, {weatherData.location.country}</Text>}
                         description={
                             <div>
-                                <Text>{weatherData.current.weather_descriptions[0]}</Text>
+                                <Text>{weatherData.current.weather_descriptions[0]}{" "}</Text>
 
                                 {weatherData.current.weather_icons && weatherData.current.weather_icons.length > 0 && (
                                     <Image src={weatherData.current.weather_icons[0]} alt="Weather Icon" />
@@ -93,30 +98,32 @@ const WeatherApp: React.FC = () => {
                                     <WeatherSunny24Regular style={{ marginRight: '5px' }} />
                                     <Text>Temperature: {weatherData.current.temperature}°C</Text>
                                 </div>
-                                <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                                    {getWindDirectionIcon(weatherData.current.wind_dir)}
-                                    <Text>Wind: {weatherData.current.wind_speed} km/h {weatherData.current.wind_dir}</Text>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                                    <WeatherRain24Regular style={{ marginRight: '5px' }} />
-                                    <Text>Humidity: {weatherData.current.humidity}%</Text>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                                    <WeatherSnow24Regular style={{ marginRight: '5px' }} />
-                                    <Text>Pressure: {weatherData.current.pressure} mb</Text>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                                    <WeatherFog24Regular style={{ marginRight: '5px' }} />
-                                    <Text>Visibility: {weatherData.current.visibility} km</Text>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                                    <WeatherPartlyCloudyDay24Regular style={{ marginRight: '5px' }} />
-                                    <Text>UV Index: {weatherData.current.uv_index}</Text>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                                    <WeatherCloudy24Regular style={{ marginRight: '5px' }} />
-                                    <Text>Cloud Cover: {weatherData.current.cloudcover}%</Text>
-                                </div>
+                                {!isCard && (<div>
+                                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+                                        {getWindDirectionIcon(weatherData.current.wind_dir)}
+                                        <Text>Wind: {weatherData.current.wind_speed} km/h {weatherData.current.wind_dir}</Text>
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+                                        <WeatherRain24Regular style={{ marginRight: '5px' }} />
+                                        <Text>Humidity: {weatherData.current.humidity}%</Text>
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+                                        <WeatherSnow24Regular style={{ marginRight: '5px' }} />
+                                        <Text>Pressure: {weatherData.current.pressure} mb</Text>
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+                                        <WeatherFog24Regular style={{ marginRight: '5px' }} />
+                                        <Text>Visibility: {weatherData.current.visibility} km</Text>
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+                                        <WeatherPartlyCloudyDay24Regular style={{ marginRight: '5px' }} />
+                                        <Text>UV Index: {weatherData.current.uv_index}</Text>
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+                                        <WeatherCloudy24Regular style={{ marginRight: '5px' }} />
+                                        <Text>Cloud Cover: {weatherData.current.cloudcover}%</Text>
+                                    </div>
+                                </div>)}
                             </div>
                         }
                     />
