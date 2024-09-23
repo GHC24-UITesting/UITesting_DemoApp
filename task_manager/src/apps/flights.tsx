@@ -48,34 +48,36 @@ const FlightsApp = () => {
   },[flights]);
 
   return (
-    <Stack tokens={{ childrenGap: 20, padding: 20 }}>
-      <Label>Airport IATA Code</Label>
-      <Input appearance="outline" onChange={(e, { value }) => setIataCode(value || '')} />
-      <label>Type</label>
-      <Dropdown
-        selectedOptions={[type]}
-        onOptionSelect={(e, data) => setType(data.optionText as string)}
-      >
-        <Option key="departure">Departure</Option>
-        <Option key="arrival">Arrival</Option>
-      </Dropdown>
-      <Button appearance="primary" onClick={handleSearch} >Search</Button>
-      {flights.length > 0 ? (
-        <ShimmeredDetailsList
-          items={mappedFlights}
-          columns={columns}
-          setKey="set"
-          layoutMode={DetailsListLayoutMode.justified}
-          selectionPreservedOnEmptyClick
-          ariaLabelForSelectionColumn="Toggle selection"
-          checkButtonAriaLabel="select row"
-          enableShimmer={isLoading}
+    <div>
+      <Stack tokens={{ childrenGap: 20, padding: 20 }}>
+        <Label>Airport IATA Code</Label>
+        <Input appearance="outline" onChange={(e, { value }) => setIataCode(value || '')} />
+        <label>Type</label>
+        <Dropdown
+          selectedOptions={[type]}
+          onOptionSelect={(e, data) => setType(data.optionText as string)}
+        >
+          <Option key="departure">Departure</Option>
+          <Option key="arrival">Arrival</Option>
+        </Dropdown>
+        <Button appearance="primary" onClick={handleSearch} >Search</Button>
+        {flights.length > 0 ? (
+          <ShimmeredDetailsList
+            items={mappedFlights}
+            columns={columns}
+            setKey="set"
+            layoutMode={DetailsListLayoutMode.justified}
+            selectionPreservedOnEmptyClick
+            ariaLabelForSelectionColumn="Toggle selection"
+            checkButtonAriaLabel="select row"
+            enableShimmer={isLoading}
 
-        />
-      ) : (
-        <MessageBar intent="info">No flights found</MessageBar>
-      )}
-    </Stack>
+          />
+        ) : (
+          <MessageBar intent="info">No flights found</MessageBar>
+        )}
+      </Stack>
+    </div>
   );
 };
 

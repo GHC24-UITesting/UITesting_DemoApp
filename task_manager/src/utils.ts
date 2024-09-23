@@ -1,20 +1,80 @@
-import { Venue } from "./types";
+import { Task, Venue } from "./types";
+import weather from "./assets/weather.jpg";
+import flight from "./assets/flight.jpg";
+import news from "./assets/news.jpg";
+import todo from "./assets/todo.jpg";
+import events from "./assets/events.jpg";
+import WeatherApp from "./apps/weather";
+import FlightsApp from "./apps/flights";
+import NewsApp from "./apps/news";
+import TodoList from "./apps/todo";
+import EventsApp from "./apps/events";
 
-export function getTasks(): string[] {
-  return [
-    "Task 1",
-    "Task 2",
-    "Task 3",
-    "Task 4",
-    "Task 5",
-    "Task 6",
-    "Task 7",
-    "Task 8",
-    "Task 9",
-    "Task 10",
-  ];
+export function getServices(): Task[] {
+    return [
+        {
+            name: "Weather",
+            id: "weather",
+            description: "Check the weather in your area",
+            selected: false,
+            image: weather,
+            type: "live-event",
+            page: "/weather",
+        },
+        {
+            name: "Flights",
+            id: "flights",
+            description: "Track flights of your interest",
+            selected: false,
+            image: flight,
+            type: "live-event",
+            page: "/flights"
+        }, 
+        {
+            name: "News",
+            id: "news",
+            description: "View current trending news",
+            selected: false,
+            image: news,
+            type: "live-event",
+            page :"/news"
+        },
+        {
+            name: "Events",
+            id: "events",
+            description: "View ongoing events in your area",
+            selected: false,
+            image: events,
+            type: "live-event",
+            page :"/events"
+        },
+        {
+            name: "To-do list",
+            id: "todo",
+            description: "Manage your daily tasks",
+            selected: false,
+            image: todo,
+            type: "misc",
+            page: "/todo"
+        }
+    ];
 }
 
+export function getComponentForId(id: string) {
+    switch(id) {
+        case "weather":
+            return WeatherApp({parent: "card"});
+        case "flights":
+            return FlightsApp();
+        case "news":
+            return NewsApp({ parent: "card" });
+        case "todo":
+            return TodoList({ parent: "card" });
+        case "events":
+            return EventsApp({ parent: "card" });
+    }
+}
+    
 export function getVenueDetails(venue: Venue): string {
-  return `Phone: ${venue.phone_number}, Address: ${venue.full_address}`;
+    return `Phone: ${venue.phone_number}, Address: ${venue.full_address}`;
 }

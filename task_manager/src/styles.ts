@@ -6,11 +6,6 @@ const flex = {
 };
 
 export const landingStyles = makeStyles({
-  parent: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
   main: {
     ...flex,
     flexDirection: "column",
@@ -53,7 +48,6 @@ export const landingStyles = makeStyles({
 export const useStylesForEvents = makeStyles({
   container: {
     padding: "20px",
-    maxWidth: "600px",
     margin: "0 auto",
   },
   input: {
@@ -68,4 +62,51 @@ export const useStylesForEvents = makeStyles({
   event: {
     marginBottom: "10px",
   },
+});
+
+export const taskPageStyles = makeStyles({
+  parent: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  }, 
+  
+  container: {
+    display: "flex",
+    gap: "0px",
+    flexDirection: "row",
+    alignItems: "flex-start",
+    width: "100%"
+  },
+
+  main: {
+      ...flex,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "flex-start"
+  },
+
+    col: {
+      ...flex,
+      flexWrap: "wrap",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      width: "100%"
+    },
+
+    card: {
+      width: "500px",
+      maxWidth: "100%",
+      height: "fit-content",
+    },
+
+    goBackButton: {
+      position: "fixed",
+      top: "10px",
+      left: "10px",
+      zIndex: 1000,
+      paddingTop: "10px",
+    },
 });
