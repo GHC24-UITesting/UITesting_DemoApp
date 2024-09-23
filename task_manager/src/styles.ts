@@ -76,5 +76,11 @@ export const taskPageStyles = makeStyles({
       justifyContent: "center",
       alignItems: "center",
       width: "60%"
+    },
+
+    card: {
+      width: "500px",
+      maxWidth: "100%",
+      height: "fit-content",
     }
 });
