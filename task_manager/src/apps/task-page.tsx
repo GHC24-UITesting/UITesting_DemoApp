@@ -3,6 +3,7 @@ import { Task } from "../types";
 import { taskPageStyles } from "../styles";
 import { Card, CardHeader, CardPreview, Title1, Button } from "@fluentui/react-components";
 import { getComponentForId } from "../utils";
+import { ArrowStepBackFilled } from "@fluentui/react-icons";
 
 const TaskPage = () => {
     const location = useLocation();
@@ -12,6 +13,9 @@ const TaskPage = () => {
     const onboardedTasks = (selectedTasks as Task[]).filter((task) => task.selected);
     return (
         <div className={styles.parent}>
+            <div className={styles.goBackButton}>
+                <Button onClick={() => navigate("/home")}><ArrowStepBackFilled />Go back to Onboarding</Button>
+            </div>
             <Title1 as="h1">Dashboard</Title1>
             <div className={styles.container}>
                 {/* live event section */}

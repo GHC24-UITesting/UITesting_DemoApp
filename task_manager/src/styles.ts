@@ -100,5 +100,13 @@ export const taskPageStyles = makeStyles({
       width: "500px",
       maxWidth: "100%",
       height: "fit-content",
-    }
+    },
+
+    goBackButton: {
+      position: "fixed",
+      top: "10px",
+      left: "10px",
+      zIndex: 1000,
+      paddingTop: "10px",
+    },
 });
