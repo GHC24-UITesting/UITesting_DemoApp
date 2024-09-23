@@ -48,7 +48,6 @@ export const landingStyles = makeStyles({
 export const useStylesForEvents = makeStyles({
   container: {
     padding: "20px",
-    maxWidth: "600px",
     margin: "0 auto",
   },
   input: {

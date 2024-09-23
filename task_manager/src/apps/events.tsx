@@ -15,8 +15,11 @@ import {
 } from "@fluentui/react-components";
 import { useStylesForEvents } from "../styles";
 
+interface EventsAppProps {
+  parent: "page" | "card";
+}
 
-const EventsApp: React.FC = () => {
+const EventsApp: React.FC<EventsAppProps> = (props: EventsAppProps) => {
   const styles = useStylesForEvents();
   const [selectedDate, setSelectedDate] = useState<string>("any");
   const [city, setCity] = useState<string>("");
@@ -43,7 +46,8 @@ const EventsApp: React.FC = () => {
 
     try {
       const response = await axios.request(options);
-      setEvents(response.data.data);
+      const data = props.parent === "card" ? response.data.data.slice(0, 3) : response.data.data;
+      setEvents(data);
     } catch (error) {
       console.error("Error fetching events:", error);
     }
@@ -59,9 +63,10 @@ const EventsApp: React.FC = () => {
     }
   };
 
+  const maxWidth = props.parent === "page" ? "600px" : "400px";
   return (
-    <div className={styles.container}>
-      <Title1>Events Happening in the City</Title1>
+    <div className={styles.container} style={{ maxWidth: maxWidth }}>
+      {props.parent === "page" && (<Title1>Events Happening in the City</Title1>)}
 
       <Input
         placeholder="Enter city"

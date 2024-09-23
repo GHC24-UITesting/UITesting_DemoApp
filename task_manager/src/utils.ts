@@ -3,10 +3,12 @@ import weather from "./assets/weather.jpg";
 import flight from "./assets/flight.jpg";
 import news from "./assets/news.jpg";
 import todo from "./assets/todo.jpg";
+import events from "./assets/events.jpg";
 import WeatherApp from "./apps/weather";
 import FlightsApp from "./apps/flights";
 import NewsApp from "./apps/news";
 import TodoList from "./apps/todo";
+import EventsApp from "./apps/events";
 
 export function getServices(): Task[] {
     return [
@@ -38,6 +40,15 @@ export function getServices(): Task[] {
             page :"/news"
         },
         {
+            name: "Events",
+            id: "events",
+            description: "View ongoing events in your area",
+            selected: false,
+            image: events,
+            type: "live-event",
+            page :"/events"
+        },
+        {
             name: "To-do list",
             id: "todo",
             description: "Manage your daily tasks",
@@ -59,6 +70,8 @@ export function getComponentForId(id: string) {
             return NewsApp({ parent: "card" });
         case "todo":
             return TodoList({ parent: "card" });
+        case "events":
+            return EventsApp({ parent: "card" });
     }
 }
     
