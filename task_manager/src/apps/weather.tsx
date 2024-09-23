@@ -1,70 +1,107 @@
-import React, { useState } from 'react';
-import {  Button, Input, Spinner, Card, CardHeader, Image, LargeTitle, Title3, Text } from '@fluentui/react-components';
-import { WeatherSunny24Regular, WeatherRain24Regular, WeatherSnow24Regular, WeatherCloudy24Regular, WeatherFog24Regular, WeatherPartlyCloudyDay24Regular, ArrowUp24Regular, ArrowDown24Regular, ArrowLeft24Regular, ArrowRight24Regular } from '@fluentui/react-icons';
-import axios from 'axios';
+import React, { useState } from "react";
+import {
+  Button,
+  Input,
+  Spinner,
+  Card,
+  CardHeader,
+  Image,
+  LargeTitle,
+  Title3,
+  Text,
+} from "@fluentui/react-components";
+import {
+  WeatherSunny24Regular,
+  WeatherRain24Regular,
+  WeatherSnow24Regular,
+  WeatherCloudy24Regular,
+  WeatherFog24Regular,
+  WeatherPartlyCloudyDay24Regular,
+  ArrowUp24Regular,
+  ArrowDown24Regular,
+  ArrowLeft24Regular,
+  ArrowRight24Regular,
+} from "@fluentui/react-icons";
+import axios from "axios";
 
 interface WeatherCardProps {
     parent: "card" | "page";
 }
 const WeatherApp: React.FC<WeatherCardProps> = (props: WeatherCardProps) => {
-    const [city, setCity] = useState('');
+    const [city, setCity] = useState("");
     const [weatherData, setWeatherData] = useState<any>(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState("");
 
-    const fetchWeatherData = async () => {
-        setLoading(true);
-        setError('');
-        try {
-            const response = await axios.get(`http://api.weatherstack.com/current`, {
-                params: {
-                    access_key: 'dca71745f5f12f84d105e90893a4e602', // Replace with your Weatherstack API key
-                    query: city,
-                }
-            });
-            const data = response.data;
-            if (data?.error) {
-                setError(data.error.info);
-            } else {
-                setWeatherData(data);
-            }
-        } catch (err) {
-            setError('Failed to fetch weather data.');
-        }
-        setLoading(false);
-    };
+  const fetchWeatherData = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const response = await axios.get(`http://api.weatherstack.com/current`, {
+        params: {
+          access_key: "dca71745f5f12f84d105e90893a4e602", // Replace with your Weatherstack API key
+          query: city,
+        },
+      });
+      const data = response.data;
+      if (data?.error) {
+        setError(data.error.info);
+      } else {
+        setWeatherData(data);
+      }
+    } catch (err) {
+      setError("Failed to fetch weather data.");
+    }
+    setLoading(false);
+  };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!city.trim()) {
-            setError('Please enter a valid city name.');
-            return;
-        }
-        fetchWeatherData();
-    };
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!city.trim()) {
+      setError("Please enter a valid city name.");
+      return;
+    }
+    fetchWeatherData();
+  };
 
-    const getWindDirectionIcon = (direction: string) => {
-        switch (direction) {
-            case 'N':
-                return <ArrowUp24Regular style={{ marginRight: '5px' }} />;
-            case 'S':
-                return <ArrowDown24Regular style={{ marginRight: '5px' }} />;
-            case 'E':
-                return <ArrowRight24Regular style={{ marginRight: '5px' }} />;
-            case 'W':
-                return <ArrowLeft24Regular style={{ marginRight: '5px' }} />;
-            case 'NE':
-                return <ArrowUp24Regular style={{ marginRight: '5px', transform: 'rotate(45deg)' }} />;
-            case 'SE':
-                return <ArrowDown24Regular style={{ marginRight: '5px', transform: 'rotate(45deg)' }} />;
-            case 'SW':
-                return <ArrowDown24Regular style={{ marginRight: '5px', transform: 'rotate(-45deg)' }} />;
-            case 'NW':
-                return <ArrowUp24Regular style={{ marginRight: '5px', transform: 'rotate(-45deg)' }} />;
-            default:
-                return null;
-        }
-    };
+  const getWindDirectionIcon = (direction: string) => {
+    switch (direction) {
+      case "N":
+        return <ArrowUp24Regular style={{ marginRight: "5px" }} />;
+      case "S":
+        return <ArrowDown24Regular style={{ marginRight: "5px" }} />;
+      case "E":
+        return <ArrowRight24Regular style={{ marginRight: "5px" }} />;
+      case "W":
+        return <ArrowLeft24Regular style={{ marginRight: "5px" }} />;
+      case "NE":
+        return (
+          <ArrowUp24Regular
+            style={{ marginRight: "5px", transform: "rotate(45deg)" }}
+          />
+        );
+      case "SE":
+        return (
+          <ArrowDown24Regular
+            style={{ marginRight: "5px", transform: "rotate(45deg)" }}
+          />
+        );
+      case "SW":
+        return (
+          <ArrowDown24Regular
+            style={{ marginRight: "5px", transform: "rotate(-45deg)" }}
+          />
+        );
+      case "NW":
+        return (
+          <ArrowUp24Regular
+            style={{ marginRight: "5px", transform: "rotate(-45deg)" }}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
     const isCard = props.parent === "card";
     const parentWidth = isCard ? '200px' : '300px';

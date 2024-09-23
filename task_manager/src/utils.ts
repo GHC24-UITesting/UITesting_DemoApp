@@ -1,4 +1,4 @@
-import { Task } from "./types";
+import { Task, Venue } from "./types";
 import weather from "./assets/weather.jpg";
 import flight from "./assets/flight.jpg";
 import news from "./assets/news.jpg";
@@ -60,4 +60,8 @@ export function getComponentForId(id: string) {
         case "todo":
             return TodoList({ parent: "card" });
     }
+}
+    
+export function getVenueDetails(venue: Venue): string {
+    return `Phone: ${venue.phone_number}, Address: ${venue.full_address}`;
 }

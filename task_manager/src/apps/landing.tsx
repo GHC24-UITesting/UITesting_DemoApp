@@ -1,24 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Caption1, Card, CardHeader, CardPreview, Checkbox, makeStyles, Text, Title1, tokens } from '@fluentui/react-components';
-import image from '../assets/image.png';
-import { useNavigate } from 'react-router';
-import { landingStyles } from '../styles';
-import { Task } from '../types';
+import { useEffect, useState } from "react";
+import {
+  Button,
+  Caption1,
+  Card,
+  CardHeader,
+  CardPreview,
+  Checkbox,
+  Text,
+  Title1,
+} from "@fluentui/react-components";
+import { useNavigate } from "react-router";
+import { landingStyles } from "../styles";
+import { Task } from "../types";
 
 interface LandingProps {
   tasks: Task[];
 }
 
-const Landing = ({tasks}: LandingProps) => {
+const Landing = ({ tasks }: LandingProps) => {
   const styles = landingStyles();
   const [selectedTasks, setSelectedTasks] = useState(tasks);
   const [numSelected, setNumSelected] = useState(0);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const numSelectedTasks = selectedTasks.filter((task) => task.selected);
     setNumSelected(numSelectedTasks.length);
-  }, [selectedTasks])
+  }, [selectedTasks]);
 
   return (
       <div className={styles.main}>
@@ -81,7 +89,7 @@ const Landing = ({tasks}: LandingProps) => {
         }
         </div>
       </div>
-  )
-}
+  );
+};
 
 export default Landing;
