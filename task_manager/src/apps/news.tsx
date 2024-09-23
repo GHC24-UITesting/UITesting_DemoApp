@@ -18,6 +18,10 @@ interface Article {
   publishedAt: string;
 }
 
+interface NewsAppProps {
+  parent: "card" | "page";
+}
+
 const categoryOptions = [
   { key: "all", text: "All Categories" },
   { key: "business", text: "Business" },
@@ -29,7 +33,7 @@ const categoryOptions = [
   { key: "technology", text: "Technology" },
 ];
 
-const NewsApp: React.FC = () => {
+const NewsApp: React.FC<NewsAppProps> = (props) => {
   const [country, setCountry] = useState("");
   const [category, setCategory] = useState("all");
   const [articles, setArticles] = useState<Article[]>([]);
@@ -47,50 +51,55 @@ const NewsApp: React.FC = () => {
     }
   };
 
-  return (
-    <Stack tokens={{ childrenGap: 20, padding: 20 }}>
-      <Label>Country Code</Label>
-      <Input
-        placeholder="Enter country code (e.g., us)"
-        appearance="outline"
-        value={country}
-        onChange={(e, { value }) => setCountry(value || "")}
-      />
-      <Label>Category</Label>
+  const displayedArticles = props.parent === "card" ? articles.slice(0, 3) : articles;
 
-      <Combobox
-        value={category}
-        onOptionSelect={(e, data) => {
-          console.log("Selected category:", data.optionValue);
-          setCategory(data.optionValue as string);
-        }}
-      >
-        {categoryOptions.map((option) => (
-          <Option key={option.key} value={option.text}>
-            {option.text}
-          </Option>
-        ))}
-      </Combobox>
-      <Button appearance="primary" onClick={handleSearch}>
-        Search
-      </Button>
-      <Stack tokens={{ childrenGap: 10 }}>
-        <h2>Top Headlines</h2>
-        {articles.length > 0 ? (
-          articles.map((article, index) => (
-            <MessageBar key={index} intent="error">
-              <strong>{article.title}</strong> - {article.source.name}
-              <br />
-              <a href={article.url} target="_blank" rel="noopener noreferrer">
-                Read more
-              </a>
-            </MessageBar>
-          ))
-        ) : (
-          <p>No news articles found</p>
-        )}
+  return (
+    <div>
+      <Stack tokens={{ childrenGap: 5, padding: 20 }}>
+        <Label>Country Code{" "}</Label>
+        <Input
+          placeholder="Enter country code (e.g., us)"
+          appearance="outline"
+          value={country}
+          onChange={(e, { value }) => setCountry(value || "")}
+          width='100%'
+        />
+
+        <Label>Category{" "}</Label>
+        <Combobox
+          value={category}
+          onOptionSelect={(e, data) => {
+            console.log("Selected category:", data.optionValue);
+            setCategory(data.optionValue as string);
+          }}
+        >
+          {categoryOptions.map((option) => (
+            <Option key={option.key} value={option.text}>
+              {option.text}
+            </Option>
+          ))}
+        </Combobox>
+        <Button appearance="primary" onClick={handleSearch}>
+          Search
+        </Button>
+        <Stack tokens={{ childrenGap: 10 }}>
+          <h2>Top Headlines</h2>
+          {displayedArticles.length > 0 ? (
+            displayedArticles.map((article, index) => (
+              <MessageBar key={index} intent="error">
+                <strong>{article.title}</strong> - {article.source.name}
+                <br />
+                <a href={article.url} target="_blank" rel="noopener noreferrer">
+                  Read more
+                </a>
+              </MessageBar>
+            ))
+          ) : (
+            <p>No news articles found</p>
+          )}
+        </Stack>
       </Stack>
-    </Stack>
+    </div>
   );
 };
 

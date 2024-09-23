@@ -5,6 +5,8 @@ import flight from "./assets/flight.jpg";
 import news from "./assets/news.jpg";
 import todo from "./assets/todo.jpg";
 import WeatherApp from "./apps/weather";
+import FlightsApp from "./apps/flights";
+import NewsApp from "./apps/news";
 
 export function getServices(): Task[] {
     return [
@@ -51,5 +53,9 @@ export function getComponentForId(id: string) {
     switch(id) {
         case "weather":
             return WeatherApp({parent: "card"});
+        case "flights":
+            return FlightsApp();
+        case "news":
+            return NewsApp({ parent: "card" });
     }
 }

@@ -12,7 +12,7 @@ const AppRoutes = () => (
       <Route path="/home" element={<Landing tasks={getServices()}/>} /> 
       <Route path="/weather" element={<WeatherApp parent='page'/>} /> 
       <Route path="/flights" element={<FlightsApp />} /> 
-      <Route path="/news" element={<NewsApp />} /> 
+      <Route path="/news" element={<NewsApp parent='page'/>} /> 
       <Route path="/taskpage" element={<TaskPage/>}/>
       <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
