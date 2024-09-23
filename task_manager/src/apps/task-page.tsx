@@ -3,6 +3,7 @@ import { Task } from "../types";
 import { taskPageStyles } from "../styles";
 import { Card, CardHeader, CardPreview, Title1, Text } from "@fluentui/react-components";
 import WeatherApp from "./weather";
+import { getComponentForId } from "../utils";
 
 const TaskPage = () => {
     const location = useLocation();
@@ -29,7 +30,7 @@ const TaskPage = () => {
                                             header={<Text weight="semibold">{task.name}</Text>}
                                         />
                                         <CardPreview>
-                                            <WeatherApp parent="card"/>
+                                            {getComponentForId(task.id)}
                                         </CardPreview>
                                     </Card>
                                 )
