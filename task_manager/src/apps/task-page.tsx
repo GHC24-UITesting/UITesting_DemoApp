@@ -21,6 +21,7 @@ const TaskPage = () => {
                                 return (
                                     <Card
                                         onClick={() => navigate(task.page)}
+                                        size="large"
                                     >
                                         {task.name}
                                     </Card>
@@ -37,6 +38,7 @@ const TaskPage = () => {
                                     return (
                                         <Card
                                             onClick={() => navigate(task.page)}
+                                            size="large"
                                         >
                                             {task.name}
                                         </Card>

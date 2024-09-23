@@ -59,6 +59,7 @@ export const taskPageStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    width: "100%"
   },
 
   main: {
