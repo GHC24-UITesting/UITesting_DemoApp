@@ -1,14 +1,10 @@
 import { Configuration, LogLevel } from "@azure/msal-browser";
 
-if (!process.env.GHC_APP_CLIENT_ID || !process.env.GHC_APP_TENANT_ID || !process.env.GHC_APP_REDIRECT_URI) {
-  throw new Error("Environment variables are not loaded correctly");
-}
-
 export const msalConfig: Configuration = {
   auth: {
-    clientId: process.env.GHC_APP_CLIENT_ID || "", // Read from environment variables
-    authority: `https://login.microsoftonline.com/${process.env.GHC_APP_TENANT_ID}`, // Read from environment variables
-    redirectUri: process.env.GHC_APP_REDIRECT_URI || "http://localhost:3000", // Read from environment variables
+    clientId: "1c319167-e0aa-4d38-8ead-4920e602f6f7", 
+    authority: "https://login.microsoftonline.com/6e24e638-465f-4896-9463-7a99f8a9191d", 
+    redirectUri: "http://localhost:3000", 
   },
   cache: {
     cacheLocation: "localStorage", // This configures where your cache will be stored
