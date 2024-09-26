@@ -15,6 +15,7 @@ import EventsApp from "./apps/events";
 import { InteractionType } from "@azure/msal-browser";
 import { MsalAuthenticationTemplate } from "@azure/msal-react";
 import { loginRequest } from "./auth-config";
+import React from "react";
 
 const AppRoutes = () => (
   <MsalAuthenticationTemplate
