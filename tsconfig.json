@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/auth-config.ts", "src/reportWebVitals.ts"  ]
 }

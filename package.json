@@ -1,8 +1,10 @@
 {
-  "name": "task_manager",
+  "name": "user_dashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@azure/msal-browser": "^2.0.0",
+    "@azure/msal-react": "^1.0.0",
     "@fluentui/react": "8.108.2",
     "@fluentui/react-components": "^9.54.13",
     "@fluentui/react-icons": "^2.0.258",
