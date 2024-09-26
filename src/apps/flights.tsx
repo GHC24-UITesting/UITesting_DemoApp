@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Stack, IColumn, DetailsListLayoutMode, ShimmeredDetailsList } from '@fluentui/react';
 import { Button, Dropdown, Input, Label, MessageBar, Option } from '@fluentui/react-components';
+import React from 'react';
 
 interface Flight {
   departure: {
@@ -48,7 +49,6 @@ const FlightsApp = () => {
   },[flights]);
 
   return (
-    <div>
       <Stack tokens={{ childrenGap: 20, padding: 20 }}>
         <Label>Airport IATA Code</Label>
         <Input appearance="outline" onChange={(e, { value }) => setIataCode(value || '')} />
@@ -77,7 +77,6 @@ const FlightsApp = () => {
           <MessageBar intent="info">No flights found</MessageBar>
         )}
       </Stack>
-    </div>
   );
 };
 

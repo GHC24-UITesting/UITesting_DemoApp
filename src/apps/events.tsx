@@ -12,6 +12,7 @@ import {
   CardHeader,
   Link,
   Spinner,
+  MessageBar,
 } from "@fluentui/react-components";
 import { useStylesForEvents } from "../styles";
 
@@ -25,6 +26,7 @@ const EventsApp: React.FC<EventsAppProps> = (props: EventsAppProps) => {
   const [city, setCity] = useState<string>("");
   const [events, setEvents] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   const fetchEvents = async (city: string, date: string) => {
     setIsLoading(true);
@@ -46,9 +48,13 @@ const EventsApp: React.FC<EventsAppProps> = (props: EventsAppProps) => {
 
     try {
       const response = await axios.request(options);
-      const data = props.parent === "card" ? response.data.data.slice(0, 3) : response.data.data;
+      const data =
+        props.parent === "card"
+          ? response.data.data.slice(0, 3)
+          : response.data.data;
       setEvents(data);
     } catch (error) {
+      setError(error.message);
       console.error("Error fetching events:", error);
     }
     setIsLoading(false);
@@ -66,7 +72,7 @@ const EventsApp: React.FC<EventsAppProps> = (props: EventsAppProps) => {
   const maxWidth = props.parent === "page" ? "600px" : "400px";
   return (
     <div className={styles.container} style={{ maxWidth: maxWidth }}>
-      {props.parent === "page" && (<Title1>Events Happening in the City</Title1>)}
+      {props.parent === "page" && <Title1>Events Happening in the City</Title1>}
 
       <Input
         placeholder="Enter city"
@@ -99,6 +105,7 @@ const EventsApp: React.FC<EventsAppProps> = (props: EventsAppProps) => {
         Search
       </Button>
       {isLoading && <Spinner label="Loading events..." size="large" />}
+      {!!error && <MessageBar intent="error">{error}</MessageBar>}
       <div>
         {events?.length > 0 && (
           <div>

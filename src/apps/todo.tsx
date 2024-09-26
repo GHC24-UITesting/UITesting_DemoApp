@@ -2,8 +2,7 @@ import { Stack } from "@fluentui/react";
 import { Button, Card, CardFooter, CardHeader, CardPreview, Input, InputOnChangeData, SelectionItemId, Text, Title1, useId } from "@fluentui/react-components";
 import { AddFilled, CheckmarkUnderlineCircleFilled } from "@fluentui/react-icons";
 import { List, ListItem } from "@fluentui/react-list-preview";
-
-import * as React from "react";
+import React from "react";
 
 type TaskItem = {
   name: string;

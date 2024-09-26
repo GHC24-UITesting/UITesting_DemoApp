@@ -1,26 +1,24 @@
 {
+  "exclude": ["node_modules", "plugins", "e2e-tests", "packages"],
+  "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"]
+    },
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "jsx": "react",
+    "module": "commonjs", // Changed to commonjs for Jest compatibility
     "moduleResolution": "node",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "lib": ["webworker", "dom", "es2018"],
+    "skipLibCheck": true,
+    "importHelpers": true,
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
-  },
-  "include": [
-    "src"
-, "src/auth-config.ts", "src/reportWebVitals.ts"  ]
+    "noImplicitReturns": true
+  }
 }

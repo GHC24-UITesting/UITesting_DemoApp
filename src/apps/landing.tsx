@@ -12,6 +12,7 @@ import {
 import { useNavigate } from "react-router";
 import { landingStyles } from "../styles";
 import { Task } from "../types";
+import React from "react";
 
 interface LandingProps {
   tasks: Task[];
