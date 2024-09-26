@@ -3,6 +3,9 @@ import axios from 'axios';
 import "@testing-library/jest-dom";
 import { renderComponent } from '../app-utils'; 
 import { sampleEventResponse } from './response';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 jest.mock('axios');
 

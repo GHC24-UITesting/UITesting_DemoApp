@@ -72,6 +72,8 @@ export function getComponentForId(id: string) {
             return TodoList({ parent: "card" });
         case "events":
             return EventsApp({ parent: "card" });
+        default:
+            return null; // or throw an error, or return a default component
     }
 }
     

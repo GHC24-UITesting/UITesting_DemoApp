@@ -1,9 +1,14 @@
 import { Configuration, LogLevel } from "@azure/msal-browser";
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+const clientId = process.env.GHC_CLIENT_ID;
+const tenantId = process.env.GHC_TENANT_ID;
 
 export const msalConfig: Configuration = {
   auth: {
-    clientId: "1c319167-e0aa-4d38-8ead-4920e602f6f7", 
-    authority: "https://login.microsoftonline.com/6e24e638-465f-4896-9463-7a99f8a9191d", 
+    clientId, 
+    authority: `https://login.microsoftonline.com/${tenantId}`, 
     redirectUri: "http://localhost:3000", 
   },
   cache: {
