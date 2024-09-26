@@ -15,5 +15,6 @@ module.exports = {
     "js",
     "jsx", // Recognize JSX files
   ],
+  testPathIgnorePatterns: ["/node_modules/", "/src/tests/e2e/"],
   testEnvironment: "jsdom", // Use jsdom test environment
 };
