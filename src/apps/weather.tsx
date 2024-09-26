@@ -17,12 +17,9 @@ import {
   WeatherCloudy24Regular,
   WeatherFog24Regular,
   WeatherPartlyCloudyDay24Regular,
-  ArrowUp24Regular,
-  ArrowDown24Regular,
-  ArrowLeft24Regular,
-  ArrowRight24Regular,
 } from "@fluentui/react-icons";
 import axios from "axios";
+import { getWindDirectionIcon } from "../app-utils";
 
 interface WeatherCardProps {
     parent: "card" | "page";
@@ -62,45 +59,6 @@ const WeatherApp: React.FC<WeatherCardProps> = (props: WeatherCardProps) => {
       return;
     }
     fetchWeatherData();
-  };
-
-  const getWindDirectionIcon = (direction: string) => {
-    switch (direction) {
-      case "N":
-        return <ArrowUp24Regular style={{ marginRight: "5px" }} />;
-      case "S":
-        return <ArrowDown24Regular style={{ marginRight: "5px" }} />;
-      case "E":
-        return <ArrowRight24Regular style={{ marginRight: "5px" }} />;
-      case "W":
-        return <ArrowLeft24Regular style={{ marginRight: "5px" }} />;
-      case "NE":
-        return (
-          <ArrowUp24Regular
-            style={{ marginRight: "5px", transform: "rotate(45deg)" }}
-          />
-        );
-      case "SE":
-        return (
-          <ArrowDown24Regular
-            style={{ marginRight: "5px", transform: "rotate(45deg)" }}
-          />
-        );
-      case "SW":
-        return (
-          <ArrowDown24Regular
-            style={{ marginRight: "5px", transform: "rotate(-45deg)" }}
-          />
-        );
-      case "NW":
-        return (
-          <ArrowUp24Regular
-            style={{ marginRight: "5px", transform: "rotate(-45deg)" }}
-          />
-        );
-      default:
-        return null;
-    }
   };
 
     const isCard = props.parent === "card";
