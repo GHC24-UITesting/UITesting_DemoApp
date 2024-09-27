@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { getVenueDetails } from "../utils";
+import { filterEventsByTime, getVenueDetails } from "../utils";
 import {
   Input,
   Text,
@@ -24,9 +24,23 @@ const EventsApp: React.FC<EventsAppProps> = (props: EventsAppProps) => {
   const styles = useStylesForEvents();
   const [selectedDate, setSelectedDate] = useState<string>("any");
   const [city, setCity] = useState<string>("");
+  const [filteredEvents, setFilteredEvents] = useState<any[]>([]);
   const [events, setEvents] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const [timeFilter, setTimeFilter] = useState<string>("all");
+
+  useEffect(() => {
+    if (!events.length) {
+      return;
+    }
+    if (timeFilter === "all") {
+      setFilteredEvents(events);
+      return;
+    }
+    let filtered = filterEventsByTime(events, timeFilter);
+    setFilteredEvents(filtered);
+  }, [events, filteredEvents, timeFilter]);
 
   const fetchEvents = async (city: string, date: string) => {
     setIsLoading(true);
@@ -53,6 +67,7 @@ const EventsApp: React.FC<EventsAppProps> = (props: EventsAppProps) => {
           ? response.data.data.slice(0, 3)
           : response.data.data;
       setEvents(data);
+      setFilteredEvents(data);
     } catch (error) {
       setError(error.message);
       console.error("Error fetching events:", error);
@@ -104,12 +119,24 @@ const EventsApp: React.FC<EventsAppProps> = (props: EventsAppProps) => {
       >
         Search
       </Button>
+      <Dropdown
+        placeholder="Select time"
+        defaultValue={timeFilter}
+        onOptionSelect={(event, data) =>
+          setTimeFilter(data.optionValue as string)
+        }
+      >
+        <Option key="all">All</Option>
+        <Option key="morning">Morning</Option>
+        <Option key="evening">Evening</Option>
+      </Dropdown>
+
       {isLoading && <Spinner label="Loading events..." size="large" />}
       {!!error && <MessageBar intent="error">{error}</MessageBar>}
       <div>
-        {events?.length > 0 && (
+        {filteredEvents?.length > 0 && (
           <div>
-            {events.map((event, index) => (
+            {filteredEvents.map((event, index) => (
               <Card key={`${index}_${event.name}`} className={styles.event}>
                 <CardHeader
                   header={<Text weight="semibold">{event.name}</Text>}
