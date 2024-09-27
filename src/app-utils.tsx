@@ -5,7 +5,7 @@ import { render } from '@testing-library/react';
 
 import EventsApp from "./apps/events";
 
-
+// for testing only
 export const renderComponent = (componentName: string) => {
 
   switch (componentName) {
