@@ -46,7 +46,7 @@ const Landing = ({ tasks }: LandingProps) => {
           tasks?.map((task, idx) => {
             return (
                 <Card
-                  key={`${task}-${idx}`}
+                  key={`${task.name}-${idx}`}
                   className={styles.card}
                   floatingAction={
                     <Checkbox 

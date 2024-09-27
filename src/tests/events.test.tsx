@@ -2,7 +2,7 @@ import { screen, fireEvent, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import "@testing-library/jest-dom";
 import { renderComponent } from '../app-utils'; 
-import { sampleEventResponse } from './response';
+import { sampleEventResponse } from './data/response';
 
 jest.mock('axios');
 
