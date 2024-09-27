@@ -4,7 +4,6 @@ import news from "./assets/news.jpg";
 import todo from "./assets/todo.jpg";
 import events from "./assets/events.jpg";
 import { filterEventsByTime, getComponentForId, getServices, getVenueDetails } from "../utils";
-import { Venue } from "types";
 import { testVenue1, testVenue2 } from "./data/venue";
 import { testEvents } from "./data/events";
 
