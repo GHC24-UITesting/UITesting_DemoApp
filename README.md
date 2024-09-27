@@ -14,10 +14,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+### `npm test:jest`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run e2e`
+
+This function is responsible for executing the complete suite of E2E tests to ensure that the application behaves as expected from the user's perspective. It simulates real user interactions and verifies that all components of the application work together correctly.
 
 ### `npm run build`
 
