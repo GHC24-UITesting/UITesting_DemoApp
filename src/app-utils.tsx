@@ -8,7 +8,7 @@ import EventsApp from "./apps/events";
 
 import { ArrowDown24Regular, ArrowLeft24Regular, ArrowRight24Regular, ArrowUp24Regular } from '@fluentui/react-icons';
 
-// for testing only
+// renders components for testing using render - Render into a container which is appended to document.body
 export const renderComponent = (componentName: string) => {
 
   switch (componentName) {
