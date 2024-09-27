@@ -28,3 +28,30 @@ export interface Venue {
   timezone: string;
   website: string;
 }
+
+export interface Event {
+  event_id: string;
+  event_mid: string;
+  name: string;
+  link: string;
+  description: string;
+  start_time: string;
+  start_time_utc: string;
+  start_time_precision_sec: number;
+  end_time: string;
+  end_time_utc: string;
+  end_time_precision_sec: number;
+  is_virtual: boolean; 
+  publisher: string;
+  publisher_favicon: string;
+  publisher_domain: string;
+  info_links: Link[];
+  venue: Venue;
+  tags: string[];
+  language: string;
+}
+
+interface Link {
+  source: string;
+  link: string;
+}

@@ -1,4 +1,4 @@
-import { Task, Venue } from "./types";
+import { Task, Venue, Event } from "./types";
 import weather from "./assets/weather.jpg";
 import flight from "./assets/flight.jpg";
 import news from "./assets/news.jpg";
@@ -103,7 +103,7 @@ export function getVenueDetails(venue: Venue): string {
  * @param timeFilter either Morning (between 6 am and noon) or Evening (between 6 pm and midnight)
  * @returns the events that match the given filter, or original events if filter does not match Morning or Evening
  */
-export const filterEventsByTime = (events: any[], timeFilter: string) => {
+export const filterEventsByTime = (events: Event[], timeFilter: string) => {
     if (timeFilter === "Morning") {
       return events.filter((event: any) => {
         const eventTime = new Date(event.start_time).getHours();
