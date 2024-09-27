@@ -1,7 +1,7 @@
 /* eslint-disable testing-library/prefer-screen-queries */
 
 import { test, chromium } from "@playwright/test";
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
 dotenv.config();
 
 const userEmail = process.env.USER_EMAIL;
@@ -9,16 +9,14 @@ const userPassword = process.env.USER_PASSWORD;
 
 test("Onboard a user to specific tasks", async () => {
   // launch chromium browser
-  const browser = await chromium.launch(); 
+  const browser = await chromium.launch();
   const context = await browser.newContext();
   const page = await context.newPage();
 
   // go to landing page and enter usename, password and then click sigin
   await page.goto("http://localhost:3000");
   await page.getByPlaceholder("Email, phone, or Skype").click();
-  await page
-    .getByPlaceholder("Email, phone, or Skype")
-    .fill(userEmail);
+  await page.getByPlaceholder("Email, phone, or Skype").fill(userEmail);
   await page.getByRole("button", { name: "Next" }).click();
   await page.locator("#i0118").fill(userPassword);
   await page.getByRole("button", { name: "Sign in" }).click();
@@ -38,15 +36,14 @@ test("Onboard a user to specific tasks", async () => {
   await page.getByRole("img", { name: "Presentation Preview" }).nth(4).click();
   await page.getByRole("button", { name: "Onboard 5 services" }).click();
 
-  // select events page and search for events in seattle
+  // select weather page
   await page
     .locator("div")
-    .filter({ hasText: /^EventsView$/ })
+    .filter({ hasText: /^WeatherView$/ })
     .getByRole("button")
     .click();
   await page.getByPlaceholder("Enter city").click();
-  await page.getByPlaceholder("Enter city").fill("seattle");
-  await page.getByText("any").click();
-  await page.getByRole("option", { name: "Today" }).click();
-  await page.getByRole("button", { name: "Search" }).click();
+  await page.getByPlaceholder("Enter city").fill("new york");
+  await page.getByRole("button", { name: "Get Weather" }).click();
+  await page.getByText("New York, United States of").click();
 });

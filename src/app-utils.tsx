@@ -1,24 +1,20 @@
-
-import React from 'react';
-
-import { render } from '@testing-library/react';
-
+import React from "react";
+import { render } from "@testing-library/react";
 import EventsApp from "./apps/events";
-
-
-import { ArrowDown24Regular, ArrowLeft24Regular, ArrowRight24Regular, ArrowUp24Regular } from '@fluentui/react-icons';
+import {
+  ArrowDown24Regular,
+  ArrowLeft24Regular,
+  ArrowRight24Regular,
+  ArrowUp24Regular,
+} from "@fluentui/react-icons";
 
 // renders components for testing using render - Render into a container which is appended to document.body
 export const renderComponent = (componentName: string) => {
-
   switch (componentName) {
-
-    case 'events':
-
-      return render(<EventsApp parent={'page'} />);
+    case "events":
+      return render(<EventsApp parent={"page"} />);
 
     default:
-      
       throw new Error(`Unknown component: ${componentName}`);
   }
 };
