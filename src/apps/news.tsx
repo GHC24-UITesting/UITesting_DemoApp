@@ -39,7 +39,7 @@ const NewsApp: React.FC<NewsAppProps> = (props) => {
   const [articles, setArticles] = useState<Article[]>([]);
 
   const handleSearch = async () => {
-    const apiKey = "05d4a50c7cac4fe68729798a40d2a8ff"; // Replace with your NewsAPI key
+    const apiKey = ""; // Replace with your NewsAPI key
     const categoryParam = category !== "all" ? `&category=${category}` : "";
     const url = `https://newsapi.org/v2/top-headlines?country=${country}${categoryParam}&apiKey=${apiKey}`;
 
