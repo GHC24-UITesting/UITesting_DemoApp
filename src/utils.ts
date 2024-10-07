@@ -11,7 +11,7 @@ import TodoList from "./apps/todo";
 import EventsApp from "./apps/events";
 
 /**
- * 
+ *
  * @returns a list of services that are available for the user to onboard
  * each service has a name, id, description, image, type, and page
  */
@@ -66,7 +66,7 @@ export function getServices(): Task[] {
 }
 
 /**
- * 
+ *
  * @param id the id of the service
  * @returns the component that corresponds to the given service ID for cards to render a preview
  * of said service
@@ -89,7 +89,6 @@ export function getComponentForId(id: string) {
 }
 
 /**
- * 
  * @param venue the venue to get details for
  * @returns a string with the phone number and full address of the venue
  */
@@ -98,22 +97,21 @@ export function getVenueDetails(venue: Venue): string {
 }
 
 /**
- * 
  * @param events the list of events to filter
  * @param timeFilter either Morning (between 6 am and noon) or Evening (between 6 pm and midnight)
  * @returns the events that match the given filter, or original events if filter does not match Morning or Evening
  */
 export const filterEventsByTime = (events: Event[], timeFilter: string) => {
-    if (timeFilter === "Morning") {
-      return events.filter((event: any) => {
-        const eventTime = new Date(event.start_time).getHours();
-        return eventTime >= 6 && eventTime < 12;
-      });
-    } else if (timeFilter === "Evening") {
-      return events.filter((event: any) => {
-        const eventTime = new Date(event.start_time).getHours();
-        return eventTime >= 18 && eventTime < 24;
-      });
-    }
-    return events; // Return original events if no filter is applied
+  if (timeFilter === "Morning") {
+    return events.filter((event: any) => {
+      const eventTime = new Date(event.start_time).getHours();
+      return eventTime >= 6 && eventTime < 12;
+    });
+  } else if (timeFilter === "Evening") {
+    return events.filter((event: any) => {
+      const eventTime = new Date(event.start_time).getHours();
+      return eventTime >= 18 && eventTime < 24;
+    });
+  }
+  return events; // Return original events if no filter is applied
 };
