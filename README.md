@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Prerequisites
+
+1. Follow the instructions in the [Microsoft AAD Authentication](https://learn.microsoft.com/en-us/azure/app-service/scenario-secure-app-authentication-app-service?tabs=workforce-configuration) to add app authentication to your web app running on Azure App Service.
+2. Once you have obtained the client ID and tenant ID, replace the placeholders in the `auth-config.ts` file with your own values.
+3. Obtain API keys for the following services:
+   - Go to [AviationStack](http://api.aviationstack.com) and sign up to get your API key.
+   - Go to [RapidAPI Real-Time Events Search](https://real-time-events-search.p.rapidapi.com) and sign up to get your API key.
+   - Go to [WeatherStack](http://api.weatherstack.com) and sign up to get your API key.
+   - Go to [NewsAPI](https://newsapi.org) and sign up to get your API key.
+4. Replace the placeholders for the API keys in the codebase with your own values.
+
 ## Available Scripts
 
 In the project directory, you can run:
