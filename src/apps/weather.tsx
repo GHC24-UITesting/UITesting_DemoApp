@@ -36,7 +36,7 @@ const WeatherApp: React.FC<WeatherCardProps> = (props: WeatherCardProps) => {
     try {
       const response = await axios.get(`http://api.weatherstack.com/current`, {
         params: {
-          access_key: "dca71745f5f12f84d105e90893a4e602", // Replace with your Weatherstack API key
+          access_key: "", // Replace with your Weatherstack API key
           query: city,
         },
       });

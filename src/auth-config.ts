@@ -1,7 +1,7 @@
 import { Configuration, LogLevel } from "@azure/msal-browser";
 
-const clientId = "1c319167-e0aa-4d38-8ead-4920e602f6f7";
-const tenantId = "6e24e638-465f-4896-9463-7a99f8a9191d";
+const clientId = ""; // replace with your own app registration client ID
+const tenantId = ""; // replace with your own app registration tenant ID
 
 export const msalConfig: Configuration = {
   auth: {

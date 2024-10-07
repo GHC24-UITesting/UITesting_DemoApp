@@ -56,7 +56,7 @@ const EventsApp: React.FC<EventsAppProps> = (props: EventsAppProps) => {
       },
       headers: {
         "x-rapidapi-host": "real-time-events-search.p.rapidapi.com",
-        "x-rapidapi-key": "efc40cd38cmsh2b1c05c9f8fa2b6p18646ejsn630de5511ce4", // Replace with your RapidAPI key
+        "x-rapidapi-key": "", // Replace with your RapidAPI key
       },
     };
 
